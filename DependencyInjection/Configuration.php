@@ -30,6 +30,13 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('authToken')->isRequired()->end()
             ->scalarNode('version')->defaultValue('2010-04-01')->end()
             ->scalarNode('retryAttempts')->defaultValue(1)->end()
+            ->arrayNode('logger')
+                ->canBeEnabled()
+                ->children()
+                    ->scalarNode('service')->isRequired()->end()
+                    ->scalarNode('level')->defaultValue('debug')->end()
+                ->end()
+            ->end()
             ->end();
 
         return $treeBuilder;

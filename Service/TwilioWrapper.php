@@ -12,29 +12,31 @@ namespace Vresh\TwilioBundle\Service;
 class TwilioWrapper extends \Services_Twilio
 {
     /**
-     * @param string $sid
-     * @param string $token
-     * @param null   $version
-     * @param int    $retryAttempts
+     * @param string   $sid
+     * @param string   $token
+     * @param string   $version
+     * @param int      $retryAttempts
+     * @param callable $logger
      */
-    public function __construct($sid, $token, $version = null, $retryAttempts = 1)
+    public function __construct($sid, $token, $version = null, $retryAttempts = 1, $logger = null)
     {
-        parent::__construct($sid, $token, $version, null, $retryAttempts);
+        parent::__construct($sid, $token, $version, null, $retryAttempts, $logger);
     }
 
     /**
      * Returns a new \Services_Twilio instance from the given parameters
      *
-     * @param      $sid
-     * @param      $token
-     * @param null $version
-     * @param int  $retryAttempts
+     * @param string   $sid
+     * @param string   $token
+     * @param string   $version
+     * @param int      $retryAttempts
+     * @param callable $logger
      *
      * @return \Services_Twilio
      */
-    public function createInstance($sid ,$token, $version = null, $retryAttempts = 1)
+    public function createInstance($sid ,$token, $version = null, $retryAttempts = 1, $logger = null)
     {
-        return new \Services_Twilio($sid, $token, null, $version, $retryAttempts);
+        return new \Services_Twilio($sid, $token, null, $version, $retryAttempts, $logger);
     }
 
 }

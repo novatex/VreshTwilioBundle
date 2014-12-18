@@ -1,6 +1,7 @@
 <?php
 namespace Vresh\TwilioBundle\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -28,11 +29,16 @@ class VreshTwilioExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $logger = $config['logger']['enabled'] ?
+            array(new Reference($config['logger']['service']), $config['logger']['level']) :
+            null;
+
         $container->getDefinition('twilio.api')
             ->addArgument($config['sid'])
             ->addArgument($config['authToken'])
             ->addArgument($config['version'])
-            ->addArgument($config['retryAttempts']);
+            ->addArgument($config['retryAttempts'])
+            ->addArgument($logger);
         $container->getDefinition('twilio.capability')
             ->addArgument($config['sid'])
             ->addArgument($config['authToken']);

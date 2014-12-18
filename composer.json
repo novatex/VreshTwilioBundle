@@ -13,10 +13,13 @@
         }
     ],
     "minimum-stability": "dev",
+    "repositories": [
+        {"type": "vcs", "url": "git@github.com:novatex/twilio-php.git"}
+    ],
     "require": {
         "php": ">=5.3.2",
         "symfony/framework-bundle": ">=2.1",
-        "twilio/sdk": ">=3.10.0"
+        "twilio/sdk": "dev-3.12.8-logged"
     },
     "require-dev": {
       "phpunit/phpunit": "~4.1"

@@ -43,6 +43,12 @@ vresh_twilio:
     version: '2008-08-01'
     #(Optional, default: 1) Number of times to retry failed requests
     retryAttempts: 3
+    #(Optional, default: false) Monolog logger for logging outbound API calls
+    logger:
+        #(Required if logger is specified) The logger service
+        service: monolog.logger
+        #(Optional, default: debug) The log level (also, the function name called on the logger)
+        level: info
 ```
 
 Usage
